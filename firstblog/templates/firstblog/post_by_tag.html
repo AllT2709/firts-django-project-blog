@@ -1,0 +1,29 @@
+{% extends "base.html"  %}
+
+{% block title %}
+    {{ tag|title }} - {{ block.super }}
+{% endblock %}
+
+{% block content %}
+
+<div class="container p-4">
+        <h4 class="text-center mb-3">All the posts tagged with - {{ tag.name }}</h4>
+        <div class="row">
+          {% for post in object_list %}
+            <div class="col-md-3">
+              <div class="card">
+                <a class="card-header text-center btn bg-secondary text-light" href="{% url 'post_detail' post.id %}"><h6>{{ post.title|capfirst }}</h6></a>
+                <div class="card-body">
+                  <h6 class="card-subtitle mb-2 text-muted text-uppercase">By: {{ post.author.name }}</h6>
+                  <p class="card-text">{% include 'firstblog/post_info.html' %}</p>
+                  <a href="{% url 'post_update' post.id %}" class="btn btn-primary">Edit</a>
+                  <a href="{% url 'post_delete' post.id %}" class="btn btn-primary">Delete</a>
+                </div>
+              </div>
+            </div>
+            {% empty %}
+                <p>There are not posts tagged with {{ tag }}</p>
+            {% endfor %}
+        </div>
+      </div>
+{% endblock %}

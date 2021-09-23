@@ -1,0 +1,11 @@
+<span>Date: {{ post.pub_date|date:"d M y h:i a" }}</span> 
+<br>
+<span>Category : <a href="{% url 'post_by_category' post.category.slug %}">{{ post.category }}</a></span> 
+<br>
+<span>Tag :
+  {% for tag in post.tags.all %}
+      <a href="{% url 'post_by_tag' tag.slug %}">{{ tag }}</a>
+  {% empty %}
+      None
+  {% endfor %}
+</span>

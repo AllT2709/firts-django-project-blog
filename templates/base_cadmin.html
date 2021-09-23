@@ -1,0 +1,7 @@
+{% extends "base.html" %}
+{% block navbar %}
+{{ block.super }}
+    <div class="user-welcome">
+        <p>Welcome {{ request.user.username }}</p>
+    </div>
+{% endblock %}
